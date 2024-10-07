@@ -13,7 +13,7 @@ export default {
         {url: 'http://5.189.156.118:6869',maintainer: 'https://t.me/Satoshi_2009'}
         ],
     tools: [
-        {name: 'Online Wallet & DEX', url: 'https://polarity.exchange/',maintainer: 'https://t.me/Satoshi_2009'},
+        {name: 'Online Wallet & DEX', url: '',maintainer: 'https://t.me/Satoshi_2009'},
         {name: 'Keeper Chrome Store', url: '',maintainer: 'https://t.me/Satoshi_2009'},
         {name: 'Keeper Firefox', url: '',maintainer: 'https://t.me/Satoshi_2009'},
         {name: 'Keeper tool', url: '',maintainer: 'https://t.me/Satoshi_2009'},
