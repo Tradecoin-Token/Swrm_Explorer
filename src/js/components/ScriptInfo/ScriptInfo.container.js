@@ -2,25 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router';
 
-import {BASE64_FORMAT, DECOMPILED_FORMAT, ScriptInfoView} from './ScriptInfo.view';
+import {ScriptInfoView, BASE64_FORMAT, DECOMPILED_FORMAT} from './ScriptInfo.view';
 import ServiceFactory from '../../services/ServiceFactory';
-import {decompile} from "@waves/ride-js";
 
 class ScriptInfoContainer extends React.Component {
     static propTypes = {
         script: PropTypes.string
     };
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            value: ''
-        };
-    }
-
-    componentDidMount() {
-        this.setDecompiledScript();
-    }
+    state = {
+        value: this.props.script
+    };
 
     componentDidUpdate(prevProps) {
         if (this.props.script !== prevProps.script) {
@@ -30,22 +22,22 @@ class ScriptInfoContainer extends React.Component {
 
     handleDisplayFormatChanged = (format) => {
         if (format === BASE64_FORMAT) {
-            this.setState({value: this.props.script});
+            this.setState({
+                value: this.props.script
+            });
         } else if (format === DECOMPILED_FORMAT) {
-            this.setDecompiledScript()
-        }
-    };
+            const {networkId} = this.props.match.params;
 
-    setDecompiledScript = () => {
-        if (this.props.script) {
-            const decompilationResult = decompile(this.props.script);
-            const decompiledScript = !decompilationResult.error ? decompilationResult.result : decompilationResult.error;
-            this.setState({value: decompiledScript});
+            ServiceFactory
+                .forNetwork(networkId)
+                .addressService()
+                .decompileScript(this.props.script)
+                .then(decompiledScript => this.setState({value: decompiledScript}));
         }
     };
 
     render() {
-        return <ScriptInfoView script={this.state.value} onDisplayFormatChanged={this.handleDisplayFormatChanged}/>;
+        return <ScriptInfoView script={this.state.value} onDisplayFormatChanged={this.handleDisplayFormatChanged} />;
     }
 }
 

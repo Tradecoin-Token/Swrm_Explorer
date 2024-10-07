@@ -1,0 +1,15 @@
+{
+  "short_name": "BNS Explorer",
+  "name": "BNS blockchain explorer",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#0000000"
+}

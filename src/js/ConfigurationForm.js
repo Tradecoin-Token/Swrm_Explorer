@@ -55,7 +55,7 @@ const validate = values => {
                 }
             });
     }).then(versionResponse => {
-        if (!versionResponse.version) {
+        if (!versionResponse.data.version) {
             throw {
                 apiBaseUrl: `Node has failed to report it's version`
             }
@@ -98,6 +98,7 @@ export default class ConfigurationForm extends React.Component {
                         <div className="row">
                             <label>Node address</label>
                             <Field name="apiBaseUrl" component={InputComponent} placeholder="Node absolute URL with port number" />
+                          
                         </div>
 
                         <div className="row buttons-wrapper">

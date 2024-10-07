@@ -5,7 +5,7 @@ import Currency from '../../shared/Currency';
 import AssetRef from '../AssetRef';
 
 export const CurrencyRef = ({currency}) => {
-    if (currency === Currency.TN)
+    if (currency === Currency.WAVES)
         return currency.toString();
 
     return <AssetRef assetId={currency.id} text={currency.toString()} />;

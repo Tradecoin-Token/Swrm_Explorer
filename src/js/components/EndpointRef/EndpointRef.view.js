@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
+import {withRouter} from 'react-router';
 
 import Alias from '../../shared/Alias';
-import { AddressRef } from './AddressRef.view';
-import { AliasRef } from './AliasRef.view';
-import { RoutedAssetRef } from "../AssetRef/AssetRef.view";
-import { RoutedTransactionRef } from "../TransactionRef/TransactionRef.view";
+import {AddressRef} from './AddressRef.view';
+import {AliasRef} from './AliasRef.view';
 
 const REGULAR = 'regular';
 const BRIGHT = 'bright';
@@ -21,19 +19,15 @@ const appearanceToClassName = appearance => {
     }
 };
 
-const EndpointRef = ({endpoint, title, appearance, match, type}) => {
+const EndpointRef = ({endpoint, title, appearance, match}) => {
     const className = appearanceToClassName(appearance);
     const {networkId} = match.params;
 
     if (Alias.isAlias(endpoint)) {
-        return <AliasRef networkId={networkId} alias={endpoint} title={title} className={className}/>;
+        return <AliasRef networkId={networkId} alias={endpoint} title={title} className={className} />;
     }
 
-    if (type === 'asset') {
-        return <RoutedAssetRef assetId={endpoint}  className={className}/>;
-    }
-
-    return <AddressRef networkId={networkId} address={endpoint} title={title} className={className}/>;
+    return <AddressRef networkId={networkId} address={endpoint} title={title} className={className} />;
 };
 
 EndpointRef.propTypes = {

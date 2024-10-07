@@ -1,9 +1,9 @@
 {
-  "short_name": "TN Explorer",
-  "name": "TN blockchain explorer",
+  "short_name": "BNS Explorer",
+  "name": "BNS blockchain explorer",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "favicon.png",
       "sizes": "16x16",
       "type": "image/png"
     }

@@ -5,7 +5,6 @@ export const routeParamsBuilder = (networks) => {
         networkId: `:networkId(${regex})?`,
         blockHeight: ':height',
         transactionId: ':transactionId',
-        leaseId: ':leaseId',
         address: ':address',
         alias: ':alias',
         assetId: ':assetId',
@@ -19,9 +18,6 @@ export const routeBuilder = (networkId) => {
 
     return {
         root,
-        tools: {
-            list:   `${root}/tools`
-        },
         nodes: {
             list: `${root}/nodes`
         },
@@ -34,9 +30,6 @@ export const routeBuilder = (networkId) => {
         },
         transactions: {
             one: (id) => `${root}/tx/${id}`
-        },
-        leases: {
-            one: (id) => `${root}/leases/${id}`
         },
         addresses: {
             one: (address, tab) => {
@@ -53,6 +46,7 @@ export const routeBuilder = (networkId) => {
         },
         assets: {
             one: (assetId) => `${root}/assets/${assetId}`
-        }
+        },
+        faucet: `${root}/faucet`
     };
 };

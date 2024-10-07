@@ -1,33 +1,28 @@
 import React from 'react';
 
-const socialLinks = [{
-    id: 'github',
-    url: 'https://github.com/aureus-trading/'
-}, {
-    id: 'twitter',
-    url: 'https://twitter.com/polarityex'
-}, {
-    id: 'discord',
-    url: 'https://discord.gg/BsrCA9mUPS'
-}, {
+const socialLinks = [
+{
     id: 'telegram',
-    url: 'https://t.me/polarityexchange'
-}, {
-    id: 'reddit',
-    url: 'https://www.reddit.com/r/PolarityEx'
-}];
+    url: 'https://t.me/RDD_Swarm'
+},
+{
+    id: 'github',
+    url: 'https://github.com/'
+}
+
+];
 
 const Footer = ({version}) => {
     return (
         <div className="menu-footer">
-            <div>Version: {version}</div>
-            <div>Brought to you by Polaris Network</div>
+            <div>Version: 1.0.0</div>
+            <div>SWARMDAO</div>
             <div>
                 {socialLinks.map(item =>
                     (<a key={item.id} className={`social ${item.id}`} href={item.url} target="_blank"></a>))}
             </div>
             <div>
-                <a className="fade" href="https://derivatives.market" target="_blank">derivatives.market</a>
+                <a className="fade" href="https://swrmdao.com" target="_blank">Website</a>
             </div>
         </div>
     );

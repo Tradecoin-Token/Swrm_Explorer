@@ -16,27 +16,19 @@ export default class Currency {
         }
     }
 
-    static TN = new Currency({
+    static FFT = new Currency({
         id: '',
-        displayName: 'POLARIS',
-        shortName: 'PT',
+        displayName: 'FFT',
+        shortName: 'FFT',
         precision: 8
     });
 
-    static currencyFromData = data => {
-        return new Currency({
-            id: data.assetId,
-            displayName: data.name,
-            precision: data.decimals
-        });
-    };
-
     static fromIssueTransaction = issueTransaction => {
-        return this.currencyFromData(issueTransaction)
-    };
-
-    static fromAssetDetails = assetDetails => {
-        return this.currencyFromData(assetDetails)
+        return new Currency({
+            id: issueTransaction.assetId,
+            displayName: issueTransaction.name,
+            precision: issueTransaction.decimals
+        });
     };
 
     toString() {

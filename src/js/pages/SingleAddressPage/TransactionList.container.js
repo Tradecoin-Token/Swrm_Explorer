@@ -9,18 +9,9 @@ import transactionMapper from './TransactionMapper';
 const TX_PAGE_SIZE = 100;
 
 class TransactionListContainer extends React.Component {
-    _isMounted = false;
-
-    componentDidMount() {
-        this._isMounted = true;
-    }
-
-    componentWillUnmount() {
-        this._isMounted = false;
-    }
-
     state = {
         transactions: [],
+        invertedAliases: [],
         loading: false,
         hasMore: true
     };
@@ -29,17 +20,25 @@ class TransactionListContainer extends React.Component {
         const {address, networkId} = this.props.match.params;
         const addressService = ServiceFactory.forNetwork(networkId).addressService();
 
-        const currentUser = {
-            address,
-        };
+        return addressService.loadRawAliases(address).then(rawAliases => {
+            const currentUser = {
+                address,
+                aliases: {}
+            };
 
-        return addressService.loadTransactions(address, TX_PAGE_SIZE).then(transactions => {
-            return transactionMapper(transactions, currentUser);
-        }).then(transactions => {
-            this._isMounted && this.setState({
-                transactions,
-                invertedAliases: currentUser.aliases,
-                hasMore: transactions.length === TX_PAGE_SIZE
+            return addressService.loadTransactions(address, TX_PAGE_SIZE).then(transactions => {
+                rawAliases.forEach(item => {
+                    currentUser.aliases[item] = true;
+                });
+
+                return transactionMapper(transactions, currentUser);
+            })
+            .then(transactions => {
+                this.setState({
+                    transactions,
+                    invertedAliases: currentUser.aliases,
+                    hasMore: transactions.length === TX_PAGE_SIZE
+                });
             });
         });
     };
@@ -51,6 +50,7 @@ class TransactionListContainer extends React.Component {
         return addressService.loadTransactions(address, TX_PAGE_SIZE, after).then(transactions => {
             const currentUser = {
                 address,
+                aliases: this.state.invertedAliases
             };
 
             return transactionMapper(transactions, currentUser);

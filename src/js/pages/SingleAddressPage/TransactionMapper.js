@@ -54,8 +54,7 @@ const copyMandatoryAttributes = tx => ({
     type: tx.type,
     timestamp: tx.timestamp,
     sender: tx.sender,
-    isSpam: tx.isSpam,
-    transferCount: tx.transferCount
+    isSpam: tx.isSpam
 });
 
 const defaultDirection = (tx, currentAddress) => {
@@ -67,16 +66,18 @@ const moneyToObject = money => ({
     currency: money.currency.toString()
 });
 
-const matchesUser = (currentUser, addressOrAlias) => addressOrAlias === currentUser.address;
+const matchesUser = (currentUser, addressOrAlias) => {
+    if (addressOrAlias === currentUser.address)
+        return true;
+
+    return !!currentUser.aliases[addressOrAlias];
+};
 
 const mapScriptInvocation = (tx, currentAddress) => {
     const tail = {
-        recipient: tx.dappAddress,
-        applicationStatus: tx.applicationStatus
+        recipient: tx.dappAddress
     };
-    const payment = tx.payment ?
-        Array.isArray(tx.payment) ? tx.payment.map(v => moneyToObject(v)) :  [moneyToObject(tx.payment)]
-        : null;
+    const payment = tx.payment ? moneyToObject(tx.payment) : null;
     if (tx.sender === currentAddress) {
         tail.direction = OUTGOING;
         tail.out = payment;
@@ -90,7 +91,6 @@ const mapScriptInvocation = (tx, currentAddress) => {
 
 const mapMassTransfer = (tx, currentUser) => {
     const tail = {};
-    if (tx.transferCount) tail.transferCount = tx.transferCount
     if (matchesUser(currentUser, tx.sender)) {
         tail.direction = OUTGOING;
         tail.out = moneyToObject(tx.totalAmount);
@@ -126,8 +126,7 @@ const mapLease = (tx, currentAddress) => {
 const mapLeaseCancel = (tx, currentAddress) => {
     return Object.assign(copyMandatoryAttributes(tx), {
         direction: defaultDirection(tx, currentAddress),
-        recipient: tx.recipient,
-        in: moneyToObject(tx.amount)
+        recipient: tx.recipient
     });
 };
 
@@ -137,9 +136,8 @@ const mapExchange = (tx, currentAddress) => {
         recipient: tx.buyer,
         in: moneyToObject(tx.total),
         out: moneyToObject(tx.amount),
-        applicationStatus: tx.applicationStatus,
         price: {
-            amount: tx.price.price.toFixed(8),
+            amount: tx.price.toTokens().toFixed(8),
             currency: tx.buyOrder.assetPair.priceAsset.toString()
         }
     });

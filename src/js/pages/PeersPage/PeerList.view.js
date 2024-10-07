@@ -17,6 +17,7 @@ export class PeerList extends React.Component {
                         <th>Declared address</th>
                         <th>Node name</th>
                         <th>Node nonce</th>
+                        <th>Node Version</th>						
                     </tr>
                 </thead>
                 <tbody>

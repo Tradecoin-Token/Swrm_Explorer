@@ -1,4 +1,5 @@
 import {ApiClientService} from './ApiClientService';
+import {VostokToWavesEnterprise} from '../shared/constants';
 
 const MAX_UNCONFIRMED_TRANSACTIONS = 25;
 
@@ -11,18 +12,23 @@ export class TransactionService extends ApiClientService {
 
     loadTransaction = (id) => {
         return this.loadRawTransaction(id).then(tx => {
+            // TODO: remove when token is renamed
+            if (tx.id === VostokToWavesEnterprise.id) {
+                tx.name = VostokToWavesEnterprise.name;
+                tx.description = VostokToWavesEnterprise.description;
+            }
 
             return this.transformer.transform(tx);
         });
     };
 
     loadRawTransaction = (id) => {
-        return this.getApi().transactions.info(id);
+        return this.getApi().transactions.info(id).then(response => response.data);
     };
 
     loadUnconfirmed = () => {
         return this.getApi().transactions.unconfirmed().then(response => {
-            const transactions = response;
+            const transactions = response.data;
             transactions.sort((a, b) => b.timestamp - a.timestamp);
 
             const size = transactions.length;

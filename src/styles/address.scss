@@ -7,6 +7,7 @@ table.address-tr-list {
     }
 
     th.amount {
+        min-width: 380px;
         @include responsive_styles(map_get($address_tr_list_columns, 'amount'))
     }
 
@@ -27,4 +28,13 @@ table.address-alias-list {
 
 div.pager {
     margin: 16px 8px 8px 24px;
+}
+
+.address-title {
+    @media (min-width: 1280px) {
+       display: flex;
+    }
+    * {
+        white-space: nowrap;
+    }
 }

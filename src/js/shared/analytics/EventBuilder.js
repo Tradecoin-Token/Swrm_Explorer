@@ -74,6 +74,17 @@ class SearchCategoryBuilder extends AbstractCategoryBuilder {
     }
 }
 
+class FaucetCategoryBuilder extends AbstractCategoryBuilder {
+    constructor() {
+        super('Faucet');
+    }
+
+    events() {
+        return {
+            request: () => new EventBuilder(this, 'FFT Requested')
+        }
+    }
+}
 
 class AnalyticsEventBuilder {
     main() {
@@ -91,9 +102,7 @@ class AnalyticsEventBuilder {
     nodes() {
         return new SimpleCategoryBuilder('Nodes');
     }
-    tools() {
-        return new SimpleCategoryBuilder('Tools');
-    }
+
     settings() {
         return new SettingsCategoryBuilder();
     }
@@ -102,6 +111,9 @@ class AnalyticsEventBuilder {
         return new SearchCategoryBuilder();
     }
 
+    faucet() {
+        return new FaucetCategoryBuilder();
+    }
 }
 
 export default AnalyticsEventBuilder;

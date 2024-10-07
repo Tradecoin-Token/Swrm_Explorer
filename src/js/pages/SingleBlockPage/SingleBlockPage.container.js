@@ -47,18 +47,12 @@ const typeToHeader = type => {
 
         case 9:
             result.price = undefined;
-            result.amount = 'Amount / Fee';
+            result.amount = 'Fee';
             break;
 
         case 10:
             result.amount = 'Fee';
             result.price = 'Alias';
-            break;
-
-        case 17:
-            result.subjects = 'Sender / Asset ID';
-            result.amount = 'Fee';
-            result.price = 'Asset name';
             break;
     }
 
@@ -70,7 +64,7 @@ const MaybeMoney = ({value}) => {
         return 'N/A';
     }
 
-    return <MoneyInfo value={value}/>;
+    return <MoneyInfo value={value} />;
 };
 
 export class SingleBlockPage extends React.Component {
@@ -126,9 +120,9 @@ export class SingleBlockPage extends React.Component {
         return (
             <Loader fetchData={this.initialFetch} errorTitle="Failed to load block">
                 <div className="content card">
-                    <GoBack/>
-                    <Headline title="Block" subtitle={this.state.currentHeight.toString()} copyVisible={false}/>
-                    <Dictionary items={dictionaryItems}/>
+                    <GoBack />
+                    <Headline title="Block" subtitle={this.state.currentHeight.toString()} copyVisible={false} />
+                    <Dictionary items={dictionaryItems} />
 
                     {Object.keys(this.state.groupedTransactions).map(type => {
                         const numericType = parseInt(type);
@@ -159,7 +153,7 @@ export class SingleBlockPage extends React.Component {
                 value: this.state.block.version
             }, {
                 label: 'Timestamp',
-                value: <Timestamp value={this.state.block.timestamp}/>
+                value: <Timestamp value={this.state.block.timestamp} />
             }, {
                 label: 'Transactions',
                 value: this.state.block.transactionCount
@@ -185,13 +179,6 @@ export class SingleBlockPage extends React.Component {
                 value: <MaybeMoney value={this.state.block.reward}/>
             }]
         };
-
-        this.state.block.id && items.default.push({label: 'BlockID', value: this.state.block.id})
-
-        if(this.state.block.version === 5){
-            items.default.push( {label: 'VRF', value: this.state.block.VRF})
-            items.default.push( {label: 'transactionsRoot', value: this.state.block.transactionsRoot})
-        }
 
         return items;
     }

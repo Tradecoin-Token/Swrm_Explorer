@@ -7,11 +7,12 @@ export class PeersService extends ApiClientService {
 
     loadPeers = () => {
         return this.getApi().peers().then(response => {
-            return response.peers.map(item => ({
+            return response.data.peers.map(item => ({
                 address: item.address,
                 declaredAddress: item.declaredAddress,
                 name: item.peerName,
-                nonce: item.peerNonce
+                nonce: item.peerNonce,
+				applicationVersion: item.applicationVersion
             }));
         });
     };

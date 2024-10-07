@@ -10,6 +10,8 @@
 @import "fonts.scss";
 @import "buttons.scss";
 @import "faucet.scss";
+@import "state-update.scss";
+@import "new-version-dialog.scss";
 
 html {
     display: block;
@@ -164,20 +166,20 @@ body {
 
         > .logo {
             background: url('../images/waves-124.svg') no-repeat 0 3px;
-            min-height: 44px;
+            min-height: 125px;
 
             a {
                 display: block;
-                height: 44px;
+                height: 125px;
                 position: absolute;
                 z-index: 1;
                 width: 220px;
             }
 
             &::after {
-                content: "Explorer";
-                left: 55px;
-                bottom: -8px;
+                content: "BNS Explorer";
+                left: 132px;
+                bottom: -24px;
                 position: relative;
                 @include font(headline1);
             }
@@ -298,6 +300,20 @@ body {
                     }
                     &.current a::after {
                         background-position: 0 -110px;
+                    }
+                }
+
+                &-converters {
+                    a {
+                        &::after {
+                            background-image: url(../images/icon-converter.svg);
+                        }
+                        &:hover::after {
+                            background-image: url(../images/icon-converter-active.svg);
+                        }
+                    }
+                    &.current a::after {
+                        background-image: url(../images/icon-converter-active.svg);
                     }
                 }
             }

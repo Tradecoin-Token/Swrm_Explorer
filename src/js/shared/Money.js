@@ -36,7 +36,7 @@ export default class Money {
         if (currency === undefined)
             throw new Error('Currency is required');
 
-        if (amount instanceof BigNumber || amount._isBigNumber)
+        if (amount instanceof BigNumber)
             amount = amount.toString();
 
         this.amount = new Decimal(amount)
@@ -47,13 +47,10 @@ export default class Money {
     static fromTokens = (amount, currency) => new Money(amount, currency);
     static fromCoins = (amount, currency) => {
         currency = currency || {};
-        if (currency.precision === undefined){
-            //console.log(currency);
+        if (currency.precision === undefined)
             throw new Error('A valid currency must be provided');
-        }
 
-
-        if (amount instanceof BigNumber || amount._isBigNumber)
+        if (amount instanceof BigNumber)
             amount = amount.toString();
 
         amount = new Decimal(amount);
@@ -126,5 +123,5 @@ export default class Money {
 }
 
 // set up decimal to format 0.00000001 as is instead of 1e-8
-Decimal.config({toExpNeg: -(Currency.TN.precision + 1)});
+Decimal.config({toExpNeg: -(Currency.FFT.precision + 1)});
 

@@ -11,17 +11,20 @@ export class PeerListItem extends React.Component {
         return (
             <tr>
                 <td data-label="Address">
-                    <div className="line">{peer.address.toString()}</div>
+                    <div className="line">{peer.address}</div>
                 </td>
                 <td data-label="Declared address">
-                    <div className="line">{peer.declaredAddress.toString()}</div>
+                    <div className="line">{peer.declaredAddress}</div>
                 </td>
                 <td data-label="Node name">
-                    <div className="line">{peer.name.toString()}</div>
+                    <div className="line">{peer.name}</div>
                 </td>
                 <td data-label="Node nonce">
-                    <div className="line">{peer.nonce.toString()}</div>
+                    <div className="line">{peer.nonce}</div>
                 </td>
+                <td data-label="Node Version">
+                    <div className="line">{peer.applicationVersion}</div>
+                </td>				
             </tr>
         );
     }

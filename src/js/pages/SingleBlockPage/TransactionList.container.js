@@ -31,6 +31,7 @@ export class TransactionList extends React.Component {
         if (this.state.collapsed) {
             tableClass += ' table-hide';
         }
+
         return (
             <React.Fragment>
                 <div className="headline2">

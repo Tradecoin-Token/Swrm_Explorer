@@ -4,30 +4,17 @@ import {withRouter} from 'react-router';
 import ServiceFactory from '../../services/ServiceFactory';
 import Loader from '../../components/Loader';
 import {AssetList} from './AssetList.view';
-import transactionMapper from "./TransactionMapper";
 
 class AssetListContainer extends React.Component {
     state = {
-        assets: [],
-        loading: false,
-        hasMore: true
+        assets: []
     };
-
-    _isMounted = false;
-
-    componentDidMount() {
-        this._isMounted = true;
-    }
-
-    componentWillUnmount() {
-        this._isMounted = false;
-    }
 
     fetchData = () => {
         const {address, networkId} = this.props.match.params;
         const addressService = ServiceFactory.forNetwork(networkId).addressService();
 
-        return addressService.loadAssets(address).then(assets => this._isMounted && this.setState({assets}));
+        return addressService.loadAssets(address).then(assets => this.setState({assets}));
     };
 
     render() {

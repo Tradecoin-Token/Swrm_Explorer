@@ -43,7 +43,7 @@ export class PeersPage extends React.Component {
                                 <span className="bold">{this.state.peers.length}</span>
                             </label>
                         </div>
-                        {this.state.peers.length && <PeerList peers={this.state.peers} />}
+                        <PeerList peers={this.state.peers} />
                     </div>
                 </Loader>
             </div>
