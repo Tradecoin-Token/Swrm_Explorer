@@ -166,7 +166,7 @@ body {
 
         > .logo {
             background: url('../images/waves-124.svg') no-repeat 0 3px;
-            min-height: 125px;
+            min-height: 90px;
 
             a {
                 display: block;
@@ -177,7 +177,7 @@ body {
             }
 
             &::after {
-                content: "BNS Explorer";
+                content: "SWRM Explorer";
                 left: 132px;
                 bottom: -24px;
                 position: relative;

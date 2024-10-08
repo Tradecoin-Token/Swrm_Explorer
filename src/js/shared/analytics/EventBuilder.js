@@ -81,7 +81,7 @@ class FaucetCategoryBuilder extends AbstractCategoryBuilder {
 
     events() {
         return {
-            request: () => new EventBuilder(this, 'FFT Requested')
+            request: () => new EventBuilder(this, 'SWRM Requested')
         }
     }
 }

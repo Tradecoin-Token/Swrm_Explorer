@@ -134,6 +134,7 @@ async function getBaseTarget(baseUrl) {
   try {
     const response = await axios.get(`${baseUrl}/blocks/last`);
     const baseTarget = response.data['nxt-consensus']['base-target'];
+	console.log(baseTarget);
     return baseTarget;
   } catch (error) {
     console.error(`Error: ${error.message}`);

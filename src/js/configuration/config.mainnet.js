@@ -6,5 +6,5 @@ export default {
     apiBaseUrl: 'https://nodes.swrmdao.com',
     useCustomRequestConfig: false,
    
-    nodes: [{url: nodeUrl, maintainer: 'Swarm Team'}]
+    nodes: [{url: nodeUrl, maintainer: 'Satoshi_2009'}]
 };

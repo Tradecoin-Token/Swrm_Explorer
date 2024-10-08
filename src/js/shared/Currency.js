@@ -18,8 +18,8 @@ export default class Currency {
 
     static FFT = new Currency({
         id: '',
-        displayName: 'FFT',
-        shortName: 'FFT',
+        displayName: 'SWRM',
+        shortName: 'SWRM',
         precision: 8
     });
 

@@ -1,6 +1,6 @@
-# BNS Explorer
+# SWRM Explorer
 
-BNS Blockchain Explorer is available on https://fftexplorer.com
+SWRM Blockchain Explorer is available on https://explorer.swrmdao.com/
 
 ## Setup
 
@@ -22,11 +22,11 @@ yarn install
 yarn start
 ```
 
-Your browser will open local version of BNS Explorer automatically.
+Your browser will open local version of SWRM Explorer automatically.
 
 ## Build
 
-Build process creates ./dist directory with BNS Explorer distribution that supports mainnet network. 
+Build process creates ./dist directory with SWRM Explorer distribution that supports mainnet network. 
 To create the distribution, run from the project directory:
 ```
 gulp buildOfficialProd

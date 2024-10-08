@@ -3,11 +3,11 @@ import React from 'react';
 const socialLinks = [
 {
     id: 'telegram',
-    url: 'https://t.me/RDD_Swarm'
+    url: 'https://telegram.me/RDD_SWRM'
 },
 {
     id: 'github',
-    url: 'https://github.com/'
+    url: 'https://github.com'
 }
 
 ];
@@ -16,7 +16,6 @@ const Footer = ({version}) => {
     return (
         <div className="menu-footer">
             <div>Version: 1.0.0</div>
-            <div>SWARMDAO</div>
             <div>
                 {socialLinks.map(item =>
                     (<a key={item.id} className={`social ${item.id}`} href={item.url} target="_blank"></a>))}
